@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <h1>Edit Profile</h1>
+        <form action="/profile/edit?_method=PUT" method="POST">
+            <div>Name: <input type="text" name="name" placeholder="<%= user.name %>" required></div>
+            <div>Email: <input type="email" name="email" placeholder="<%= user.email %>" required></div>
+            <!-- <div>Username: <input type="text" name="username" placeholder="<%= user.username %>" required></div> -->
+            <div>Password: <input type="password" name="password" placeholder="<%= user.password %>" required></div>
+            <div>Description <textarea name="description" required><%= user.description %></textarea></div>
+            <button>Change!</button>
+        </form>
+    </body>
+</html>

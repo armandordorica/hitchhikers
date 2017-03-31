@@ -1,0 +1,58 @@
+
+<html>
+<% include ./partials/header %>
+<div class="container">
+<h1>Available Trips</h1>
+
+<body>
+  
+<form method="POST"  action="/trips">
+    <input type="text" name="origin" placeholder="Origin">
+    <input type="text" name="destination" placeholder="Destination">
+    <input type="number" name="priceMin" placeholder="Minimum Price">
+    <input type="number" name="priceMax" placeholder="Maximum Price">
+    <input type='number' name="seats" placeholder='Minimum Available Seats'>
+    <input type="text" name="sortBy" placeholder="Sort By">
+    <input type="text" name="order" placeholder="Increasing/Decreasing">
+  
+    <button>Search</button>
+</form>
+    
+</form>
+
+<% if(length > 0){ %>
+    
+
+    <% trips.forEach(function(trip){ %>
+        <% if((trip.driver !== undefined) && (trip.driver !== null)){ var driverRating = trip.driver.rating; }else{ var driverRating = "";}; %>
+
+        <li><b>Origin:</b> <%= trip.origin %>, <b>Destination:</b> <%= trip.destination %>, <b>Date:</b> <%= trip.date %>, <b>Price: $</b><%= trip.price%>, <b>Available Seats: </b><%=trip.availableSeats%>, <b>Driver Rating: </b><%=driverRating%>,
+            <a href="<%="trip/" + trip._id%> ">view details</a> 
+            <!--<form method="POST" action=/tripsearch class="addTripForm">
+                 <input type="checkbox" name="addTrip" value=<%=//trip._id%> 
+                <button class="addTripButton" value="<%= trip._id %>" name="tripID">Check to Add Trip</button>
+            </form>-->
+        </li>
+        <!--  -->
+        
+    <% }); %>
+  
+<% } else { %>
+
+    <strong> There are no trips that match your search. </strong>
+    
+<% }; %>
+
+<!--
+<script>
+    $('button.addTripButton').click( function() {
+        $('form.addTripForm').submit();
+    });
+</script>
+
+-->
+    
+</body>   
+</div>
+</html>
+

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <h1>Create a Trip!</h1>
+        <%if(!user.accountType){%>
+            <div>
+                <p>Error: You Must be a Driver to Create Trip</p>
+            </div>
+        <% } else {%>
+            <div>
+                <form action="/trip/new" method="POST">
+                    <div>
+                        <p>Origin</p>
+                        <input type="text" name="origin" placeholder="Origin" required>
+                    </div>
+                    <div>
+                        <p>Destination</p>
+                        <input type="text" name="destination" placeholder="Destination" required>
+                    </div>
+                    <div>
+                        <p>Price</p>
+                        <input type="number" name="price" placeholder="Price" required>
+                    </div>
+                    <div>
+                        <p>Seats:</p>
+                        <input type="number" name="seats" placeholder="Available Seats" required>
+                    </div>
+                    <div>
+                        <p>Date:</p>
+                        <input type="date" name="date" placeholder="Date" required>
+                    </div>
+                    <div>
+                        <button>Submit</button>
+                    </div>
+                </form>
+            </div>
+        <% } %>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <h1> Passengers </h1>
+    </head>
+    <body>
+        <h1><%= trip.origin %>---> <%=trip.destination%></h1>
+        <!-- Iterates through the trip passengers that have shown interest in the trip.passengers array
+        then for each passenger(user) prints their name and a button that links the user to the passenger profile-->
+        
+        <div> <%= trip.passengers[0] %></div> 
+        
+        <% if((trip.passengers != undefined) || (trip.passengers != null)){ %>
+            <div>here</div>
+            <% trip.passengers.forEach(function(passenger){ %>
+                <li><b> Passenger name: </b><%= passenger.name %>, <b> Passenger ID (for testing purposes): </b> <%=passenger._id%></li>
+                <form method="GET" action="/user/<%= passenger.id %>">
+                    <button>Show Profile</button>
+                </form>
+            <% }); %>
+            
+        <% }else{ %>
+        
+            <b> There are no passengers associated with this trip. </b>
+            
+        <% } %>
+        
+    </body>
+</html>

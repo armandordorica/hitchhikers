@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <h1>Enter Vehicle Information</h1>
+        <%if(!user.accountType){%>
+            <div>
+                <p>Error: You Must be a Driver to Add a Vehicle</p>
+            </div>
+        <% } else {%>
+            <div>
+                <form action="/vehicle/new" method="POST">
+                    <div>
+                        <p>Name</p>
+                        <input type="text" name="name" placeholder="name">
+                    </div>
+                    <div>
+                        <p>Year, Make, Model (eg 2012 Ford Focus)</p>
+                        <input type="text" name="yearMakeModel" placeholder="yearMakeModel">
+                    </div>
+                    
+                    <div>
+                        <p>Total Number of Seats</p>
+                        <input type="number" name="totalSeats" placeholder="totalSeats">
+                    </div>
+                    <div>
+                        <p>License Plate Number</p>
+                        <input type="text" name="licensePlate" placeholder="licensePlate">
+                    </div>
+                    <div>
+                        <p>Colour</p>
+                        <input type="text" name="colour" placeholder="colour">
+                    </div>
+                    <div>
+                        <button>Submit</button>
+                    </div>
+                </form>
+            </div>
+        <% } %>
+    </body>
+</html>

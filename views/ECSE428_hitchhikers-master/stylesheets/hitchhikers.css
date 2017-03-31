@@ -1,0 +1,376 @@
+
+/*****TRIP DETAILS*******/
+#special{
+    background: url('img-4.jpg') no-repeat center center;
+
+  background-position: 0 auto;
+  font-family: 'Open Sans', sans-serif;
+  background-repeat: no-repeat;
+  padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+  padding-bottom: 50px;
+  text-align: center;
+  background-size: cover;
+}
+
+.trip-details h3 { 
+  font-family: 'Pacifico', cursive;
+  color: #d1faff;
+
+}
+
+.panel-default>.panel-heading{ 
+  font-family: 'Pacifico', cursive;
+  background-color: #004e64;
+  font-size: 20px;
+  color: #d1faff;
+}
+
+
+#invoice strong{
+color: black;
+}
+
+ /**********/
+
+body{
+  font-family: 'Open Sans', sans-serif;
+}
+
+a{ 
+  color: #d1faff;
+}
+
+html{
+  height: 100%;
+}
+
+#content { 
+  text-align: center; 
+  padding-top: 30%;
+  padding-bottom: 100px
+}
+
+h1{
+  font-family: 'Pacifico', cursive;
+  color: white;
+  font-size: 70;
+  line-height: 1.7;
+}
+
+h3{
+  color: white;
+  letter-spacing: 3;
+}
+
+h4{
+  font-family: 'Pacifico', cursive;
+  font-size: 25;
+
+}
+
+hr{
+   height: 12px;
+   border-top: 3px solid white ;
+   width: 90%;
+}
+
+/*****************   NAVBAR   ***************/
+.navbar-default {
+  background-color: #004e64;
+  border: #004e64;
+}
+
+.navbar{
+  margin-bottom: 0px;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: #d1faff;
+}
+
+.navbar-default .navbar-nav>li>a:hover{
+  color: #30bced;
+}
+
+.navbar-default .navbar-brand {
+  color: #d1faff;
+  font-family: 'Pacifico', cursive;
+
+}
+
+.btn-default:hover{
+  color: #004e64;
+  background-color: #d1faff;
+}
+
+.navbar-default .navbar-brand:hover{
+  color: #30bced;
+}
+
+
+/*Hamburger thing*/
+.navbar-default .navbar-toggle .icon-bar{ 
+  background-color: #d1faff;
+}
+
+
+/*Get on the road button*/
+.btn-default{
+  background-color: #004e64;
+  color: #d1faff;
+  border: #004e64;
+  height: 40px;
+}
+
+.navbar-default .navbar-toggle{
+  color: #004e64;
+}
+
+/*************** BEGIN TRIP SECTION **********/
+.begin-trip h1{
+  color:black; 
+  text-align: center;
+  padding-top: 70px; 
+  padding-bottom: 50px;
+  font-size: 50px;
+}
+
+.container .begin-trip{
+  padding-bottom: 0px;
+}
+
+#trip-input .container{
+  padding-bottom: 60px;
+}
+
+#trip-input .btn-default{
+  margin-top: 20px;
+}
+/*Bootstrap overwrite*/ 
+
+.container .welcome .btn .btn-default .btn-lg{
+  color: black;
+
+}
+
+.container .welcome h1{
+  font-size: 50px;
+}
+.bg-primary{
+    color: #d1faff;
+    background-color: #004e64;
+}
+
+.bg-primary p, strong{
+  color: #004e64;
+}
+
+.text-primary{
+  color: #004e64  ;
+}
+
+.service-item strong{
+  color: white;
+}
+.row .text-center p{
+  color: #000;
+}
+#services a, strong {
+    text-decoration: none;
+}
+
+#services a:hover{
+  color: #004e64;
+  background-color: #d1faff;
+}
+
+#services p{
+  color: white;
+}
+.btn:hover {
+    color: #004e64;
+    text-decoration: none;
+}
+
+.list-inline li a{
+  color: #004e64;
+}
+
+.list-inline li a:hover{
+  color: #d1faff;
+}
+
+.list-unstyled li a{
+  color: #004e64;
+}
+
+.list-unstyled li a:hover{
+  color: #d1faff;
+}
+
+.footer h4{ 
+color: #004e64;
+}
+/*****************************/ 
+.intro-header {
+    padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url('img-4.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+.intro-message {
+    position: relative;
+    padding-top: 20%;
+    padding-bottom: 20%;
+}
+
+.intro-message > h1 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-size: 5em;
+}
+
+.intro-divider {
+    width: 400px;
+    border-top: 1px solid #f8f8f8;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.intro-message > h3 {
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+}
+
+/****************** Sign Up Heading ******************/
+#signUpHeading h1{
+  padding-top: 0;
+  padding-bottom: 3px;
+}
+
+#signUpForm {
+
+}
+
+.main-center {
+  padding: 20px 30px;
+}
+
+.form-horizontal {
+  margin-right: 30%;
+  margin-left: 30%;
+}
+
+#btn-register{
+  padding-bottom: 35px;
+}
+
+#goBack{
+  color: #004e64;
+}
+
+#goBack > a:hover{
+  color: #d1faff;
+}
+
+#loginButtton{
+   color: #004e64;
+  background-color: #d1faff;
+}
+
+.dark{
+  text-align: center;
+}
+.dark a{
+  color: #004e64;
+  text-align: center;
+}
+
+.dark a:hover {
+  color: #d1faff;
+}
+
+.modal-body {
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+/************** Trip Post ***************/ 
+#postTripForm{
+  margin-right: 0%;
+  margin-left: 0%;
+}
+
+
+
+
+#postTripForm h4{
+  font-size: 40;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+}
+
+
+#postTripGoBack h4{
+  font-size: 10;
+  color: red;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#postTripGoBack a:hover{
+  color: red;
+}
+
+#postTripGoBack a{
+  color: red;
+}
+
+.page-header h1{
+  color: #004e64;
+}
+
+.page-header{
+  color: #004e64;
+}
+
+.profile-form{
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.profile-btn{
+  margin-left: 200px;
+}
+
+.edit-profile hr{
+  color: black;
+}
+
+#edit-profile{
+  color: #004e64;
+  width: 100%;
+   height: 12px;
+    border: 0;
+    box-shadow: inset 0 12px 12px -12px rgba(0,78,100, 0.5);
+}
+
+.page-header{
+  border-bottom: 0px;
+}
+
+#btn-select{
+  padding-left: 50px;
+}
+
+.profile-description {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+

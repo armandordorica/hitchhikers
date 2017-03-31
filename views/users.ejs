@@ -1,0 +1,7 @@
+
+<h1>All Users</h1>
+
+
+<% users.forEach(function(user){ %>
+  <li><b>Name:</b> <%= user.name %>, <b>Username:</b> <%= user.username %>, </b> <b>Favourite Colour:</b> <%= user.favcolour %> <a href="<%="user/" + user._id%>">view details</a></li>
+    <% }); %>

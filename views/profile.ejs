@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <% include ./partials/header %>
+        <link rel="stylesheet" href="~/workspace/ExpressApp/public/main.css">
+    </head>
+    
+     <div class="container">
+    <body>
+        <h1>Hello <%= user.username %></h1>
+        <li>name: <%= user.name %> </li>
+        <li>email: <%= user.name %> </li>
+        <li>password: <%= user.name %> </li>
+        <li>description: <%= user.name %> </li>
+        <li>Driver: <%= user.accountType %></li>
+        <a href = '/trips'>Click to view Trips</a>
+   
+        
+           <form action="/profile/edit" method ="GET">
+        <button>Edit Profile</button>
+    </form>
+    <% if(!user.accountType){ %>
+    <form action = "/profile?_method=PUT" method = "POST">
+        <div>Become a Driver: 
+            <div> Licence Information: *(Ontario and New York Licences Currently Supported)
+                <input type="text" name="driverButton" pattern="[A-Z]\d{4}-?\d{5}-?\d{5}|\d{9}" required>
+            </div>
+            <div> Vehicle Make: 
+                <input type="text" name="make" required>
+            </div>
+            <div> Vehicle Model: 
+                <input type="text" name="model" required>
+            </div>
+            <div> Vehicle Year: 
+                <input type="text" name="year" required>
+            </div>
+            <div> Vehicle Colour: 
+                <input type="text" name="colour" required>
+            </div>
+            <div> Available Seats: 
+                <input type="text" name="seats" required>
+            </div>
+            <div> Licence Plate: 
+                <input type="text" name="licencePlate" required>
+            </div>
+            
+            <button>Become a Driver</button>
+        </div>
+      </form>
+      <% } else { %>
+      <form method="GET" action="/trip/new" method="GET">
+          <button>Create Trip</button>
+      </form>
+      <li>My Trips: </li>
+      <% trips.forEach(function(trip){ %>
+          <li><%= trip.origin %> -> <%= trip.destination %></li>
+            <% if(trip.date.getTime() >= Date.now() + 86400000){ %> 
+                <form method="POST" action="/trip/<%=trip._id%>?_method=DELETE">
+                  <button>Delete</button>
+                </form>
+            <% } else { %>
+                <div>Cannot Delete Trip! Trip Occurs in the Next 24h</div>
+            <% } %>
+          <form method="GET" action="/trip/<%=trip._id%>/passengers">
+              <button>View Passengers</button>
+          </form>
+      <% }); %>
+      
+      <li>Past Trips: </li>
+      <% trips.forEach(function(trip){ %>
+            <% if(trip.date.getTime() <= Date.now()){ %> 
+                 <li><%= trip.origin %> -> <%= trip.destination %></li>
+                 
+                 <form method="POST" action="/profile/rate/<%=trip._id%>">
+                      <select name="rating">
+                        <option value="1">1 star</option>
+                        <option value="2">2 stars</option>
+                        <option value="3">3 stars</option>
+                        <option value="4">4 stars</option>
+                        <option value="5">5 stars</option>
+                      </select>
+                      <br><br>
+                      <button>Leave a Rating</button>
+                </form>
+                 
+            <% } %>
+      <% }); %>
+      
+       <% } %>
+    </div>
+ 
+      
+      </body>
+       
+      
+      
+      
+</html>

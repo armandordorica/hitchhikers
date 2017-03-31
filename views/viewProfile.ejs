@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>image example</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js">
+    
+    <link rel="stylesheet" type="text/css" href="animate.css">
+    <link rel="stylesheet" type="text/css" href="hitchhikers.css">
+    <link rel="stylesheet" type="text/css" href="searchResults.css">
+
+
+<script src="wow.min.js"></script>
+              <script>
+              new WOW().init();
+              </script>
+</head>
+
+<body>
+
+
+<!-- *********** NAVIGATION BAR  ************** -->
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="hitchhikers.html">Hitchhikers</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Become a Driver   <i class="fa fa-hand-o-up" aria-hidden="true"></i></a></li>
+        <li><a href="#">Sign Up   <i class="fa fa-user-plus" aria-hidden="true"></i></a></li>
+        <li><a href="#">Log In   <i class="fa fa-sign-in" aria-hidden="true"></i></a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<section>
+  <div class="container" style="padding-top:30px">
+
+
+      <div class="row">
+        <div class="col-md-4">
+                   <p style="text-align: center; padding-top:30px; padding-bottom:20px;"><img alt="User Pic" src="https://farm3.staticflickr.com/2906/14488469810_99f788d325.jpg" align="middle" class="img-thumbnail img-responsive"></p>
+    <div class="panel panel-default">
+      <div class="panel-heading" style="text-align:center;">Verified Information</div>
+      <div class="panel-body" style="padding-left:20%;">
+      <ul style="list-style: none;">
+        <li>Driver's License <span class="glyphicon glyphicon-ok"></span></li>
+        <li>Email address <span class="glyphicon glyphicon-ok"></span></li>
+        <li>Phone number <span class="glyphicon glyphicon-ok"></span></li>
+      </ul>
+    </div>
+    </div>
+
+                   </div>
+                   <div class="col-md-8">
+                    <div class="caption-full">
+              
+                        <h4><strong><%= user.name %></strong></h4>
+                        <div class="profile-description">
+                          </p><%= user.description %> </p>
+                        </div>
+                    </div>
+
+                    <div class="ratings">
+                        <p class="pull-right">2 reviews</p>
+                        <p>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            4.0 stars
+                        </p>
+                    </div>
+                    <div class="well">
+
+                    <div class="text-right">
+                        <a class="btn btn-success">Leave a Review</a>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            Jackson
+                            <span class="pull-right">10 days ago</span>
+                            <p>Ashley was very nice, we had lots of fun on our trip. I'd totally hitchhike with her again!</p>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            Jeff 
+                            <span class="pull-right">40 days ago</span>
+                            <p>Ashley is OK.</p>
+                        </div>
+                    </div>
+
+                </div>
+      </div>
+         
+  </div>
+
+
+
+
+
+
+</section>
+
+
+
+
+
+
+   <footer>
+        <div class="container footer" style="padding-top: 40px;">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <h4><strong>Hitchhikers</strong>
+                    </h4>
+                    <p>3630 University St
+
+                        <br>Montreal, QC H3A 2B2</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
+                        <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:name@example.com">frontdesk@hitchhikers.com</a>
+                        </li>
+                    </ul>
+                    <br>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="#" ><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-youtube-play fa-fw fa-3x"></i></a>
+                        </li>
+                    </ul>
+                    <p class="text-muted">Copyright &copy; Hitchhikers 2017</p>
+                </div>
+            </div>
+        </div>
+        <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
+    </footer>
+
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+
+</body>
+</html>

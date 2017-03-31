@@ -1,0 +1,9 @@
+.img-thumbnail {
+  width: 200px;
+  height: 200px;
+}
+
+.panel-info>.panel-heading {
+  background-color: #004e64;
+  color: #d1faff;
+}

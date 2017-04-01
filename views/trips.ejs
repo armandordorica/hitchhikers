@@ -5,20 +5,59 @@
 <h1 style="color: black;">Available Trips</h1>
 
 <body>
-  <div class="form-group">
+  <div class=" panel panel-default">
+   
+<div class="panel-heading">
+     <h4>Filter by</h4>
+            </div>
   
-<form method="POST"  action="/trips">
-    <input type="text" name="origin" placeholder="Origin">
-    <input type="text" name="destination" placeholder="Destination">
-    <input type="number" name="priceMin" placeholder="Minimum Price">
-    <input type="number" name="priceMax" placeholder="Maximum Price">
-    <input type='number' name="seats" placeholder='Minimum Available Seats'>
-    <input type="text" name="sortBy" placeholder="Sort By">
-    <input type="text" name="order" placeholder="Increasing/Decreasing">
+<form class="form-inline" method="POST"  action="/trips">
+    <div class=" form-group">
+    <div class="row">
+        
+    <div class="col-md-2">
+    <input class="form-control"  type="text" name="origin" placeholder="Origin">
+    </div>
+    
+    <div class="col-md-2">
+    <input class="form-control"  type="text" name="destination" placeholder="Destination">
+    </div>
+    
+    <div class="col-md-2">
+    <input class="form-control" type="number" name="priceMin" placeholder="Minimum Price">
+    </div>
+    
+    
+    <div class="col-md-2">
+    <input class="form-control" type="number" name="priceMax" placeholder="Maximum Price">
+    </div>
+    
+    <div class="col-md-2">
+    <input class="form-control" type='number' name="seats" placeholder='Minimum Available Seats'>
+    </div>
+    
+    <div class="col-md-2">
+    <input class="form-control" type="text" name="sortBy" placeholder="Sort By">
+    </div>
+    
+    <div class="col-md-2">
+    <input class="form-control" type="text" name="order" placeholder="Increasing/Decreasing">
+    </div> 
+    
+   
+    </div>
   
-    <button>Search</button>
+    
 </form>
 </div>
+</div>
+
+ <div class="row">
+    <div class="col-md-3 col-offset-3" style="margin: 0 auto; text-align: center;">
+        <button class="btn btn-default btn-block">Search</button>
+    </div>
+    </div>
+
     
 </form>
 
@@ -28,13 +67,54 @@
     <% trips.forEach(function(trip){ %>
         <% if((trip.driver !== undefined) && (trip.driver !== null)){ var driverRating = trip.driver.rating; }else{ var driverRating = "";}; %>
 
-        <li><b>Origin:</b> <%= trip.origin %>, <b>Destination:</b> <%= trip.destination %>, <b>Date:</b> <%= trip.date %>, <b>Price: $</b><%= trip.price%>, <b>Available Seats: </b><%=trip.availableSeats%>, <b>Driver Rating: </b><%=driverRating%>,
-            <a href="<%="trip/" + trip._id%> ">view details</a> 
+       
+           
+           <div class="panel panel-default">
+            <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td><strong>Origin:</strong></td>
+                        <td><%= trip.origin %></td>
+                      </tr>
+                     <tr>
+                        <td><strong>Destination:</strong></td>
+                        <td><%= trip.destination %></td>
+                      </tr>
+                      <tr>
+                        <td><strong>Date:</strong></td>
+                        <td><%= trip.date %></td>
+                      </tr>
+                      <tr>
+                        <td><strong>Price:</strong></td>
+                        <td><%= trip.price %></td>
+                      </tr>
+                      <tr>
+                        <td><strong>Available Seats:</strong></td>
+                        <td><%=trip.availableSeats%></td>
+                      </tr>
+                      <tr>
+                        <td><strong>Driver Rating:</strong></td>
+                        <td><%=driverRating%></td>
+                      </tr>
+                      <tr>
+                          <td>
+                              <a class="btn btn-primary btn-default btn-block" href="<%="trip/" + trip._id%> ">view details</a> 
+                          </td>
+                    </tr>
+                        </tbody>
+
+                  </table>
+                  </div>
+           
+           
+            
+            
+    
             <!--<form method="POST" action=/tripsearch class="addTripForm">
                  <input type="checkbox" name="addTrip" value=<%=//trip._id%> 
                 <button class="addTripButton" value="<%= trip._id %>" name="tripID">Check to Add Trip</button>
             </form>-->
-        </li>
+
         <!--  -->
         
     <% }); %>

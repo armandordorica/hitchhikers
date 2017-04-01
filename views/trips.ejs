@@ -2,9 +2,10 @@
 <html>
 <% include ./partials/header %>
 <div class="container">
-<h1>Available Trips</h1>
+<h1 style="color: black;">Available Trips</h1>
 
 <body>
+  <div class="form-group">
   
 <form method="POST"  action="/trips">
     <input type="text" name="origin" placeholder="Origin">
@@ -17,6 +18,7 @@
   
     <button>Search</button>
 </form>
+</div>
     
 </form>
 
@@ -52,7 +54,5 @@
 
 -->
     
-</body>   
-</div>
-</html>
+<% include ./partials/footer %>
 

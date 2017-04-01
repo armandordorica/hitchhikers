@@ -4,21 +4,114 @@
         <% include ./partials/header %>
         <link rel="stylesheet" href="~/workspace/ExpressApp/public/main.css">
     </head>
-    
+    <section>
+  <div class="container" style="padding-top:30px">
+
+
+      <div class="row">
+        <div class="col-md-4">
+                   <p style="text-align: center; padding-top:30px; padding-bottom:20px;"><img alt="User Pic" src="joe-gardner.jpg"  align="middle" class="img-thumbnail img-responsive"></p>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" style="text-align:center;">User Information</div>
+      <div class="panel-body" style="padding-left:20%;">
+      <ul style="list-style: none;">
+         <li><strong>Name:</strong> <%= user.name %> </li>
+        <li><strong>Email:</strong>email: <%= user.name %> </li>
+        <li><strong>Password:</strong> <%= user.name %> </li>
+        <li><strong>Description:</strong> <%= user.name %> </li>
+        <li><strong>Driver:</strong> <%= user.accountType %></li>
+        <!--<li>Driver's License <span class="glyphicon glyphicon-ok"></span></li>-->
+        <!--<li>Email address <span class="glyphicon glyphicon-ok"></span></li>-->
+        <!--<li>Phone number <span class="glyphicon glyphicon-ok"></span></li>-->
+      </ul>
+    </div>
+    </div>
+
+                   </div>
+                   <div class="col-md-8">
+                    <div class="caption-full">
+              
+                        <h4><strong>Hello <%= user.username %></strong></h4>
+                        <form action="/profile/edit" method ="GET">
+        <button class="btn btn-default">Edit Profile</button>
+    </form>
+                        <div class="profile-description">
+                          </p>Hi, I'm Ashley, a 2nd year Poli Sci and Econ student at McGill. I'm obviously from Toronto and I am looking for some people to ride with me and share costs.</p>
+                        </div>
+                    </div>
+
+                    <div class="ratings">
+                        <p class="pull-right">2 reviews</p>
+                        <p>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            4.0 stars
+                        </p>
+                    </div>
+                    <div class="well">
+
+                    <div class="text-right">
+                        <a class="btn btn-success">Leave a Review</a>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            Jackson
+                            <span class="pull-right">10 days ago</span>
+                            <p>Ashley was very nice, we had lots of fun on our trip. I'd totally hitchhike with her again!</p>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            Jeff 
+                            <span class="pull-right">40 days ago</span>
+                            <p>Ashley is OK.</p>
+                        </div>
+                    </div>
+
+                </div>
+      </div>
+         
+  </div>
+
+
+
+
+
+
+</section>
+
      <div class="container">
     <body>
-        <h1>Hello <%= user.username %></h1>
-        <li>name: <%= user.name %> </li>
-        <li>email: <%= user.name %> </li>
-        <li>password: <%= user.name %> </li>
-        <li>description: <%= user.name %> </li>
-        <li>Driver: <%= user.accountType %></li>
-        <a href = '/trips'>Click to view Trips</a>
+        <!--<h1>Hello <%= user.username %></h1>-->
+        <!--<li>name: <%= user.name %> </li>-->
+        <!--<li>email: <%= user.name %> </li>-->
+        <!--<li>password: <%= user.name %> </li>-->
+        <!--<li>description: <%= user.name %> </li>-->
+        <!--<li>Driver: <%= user.accountType %></li>-->
+        <a class="btn btn-default" href = '/trips'>Click to view Trips</a>
    
         
-           <form action="/profile/edit" method ="GET">
-        <button>Edit Profile</button>
-    </form>
+           
     <% if(!user.accountType){ %>
     <form action = "/profile?_method=PUT" method = "POST">
         <div>Become a Driver: 
@@ -49,24 +142,37 @@
       </form>
       <% } else { %>
       <form method="GET" action="/trip/new" method="GET">
-          <button>Create Trip</button>
+          <button class="btn btn-default">Create Trip</button>
       </form>
-      <li>My Trips: </li>
+      
+      <div class="panel panel-default">
+      <div class="panel-heading" style="text-align:center;">My trips</div>
+      <div class="panel panel-default">
+  
+
       <% trips.forEach(function(trip){ %>
-          <li><%= trip.origin %> -> <%= trip.destination %></li>
+      <div class="panel panel-default">
+          <div class="container">
+          <li><strong>From: </strong><%= trip.origin %> <strong>to: </strong> <%= trip.destination %></li>
+             <div class="btn-group btn-group-justified">
             <% if(trip.date.getTime() >= Date.now() + 86400000){ %> 
                 <form method="POST" action="/trip/<%=trip._id%>?_method=DELETE">
-                  <button>Delete</button>
+                  <button class="btn btn-default">Delete</button>
                 </form>
             <% } else { %>
                 <div>Cannot Delete Trip! Trip Occurs in the Next 24h</div>
             <% } %>
           <form method="GET" action="/trip/<%=trip._id%>/passengers">
-              <button>View Passengers</button>
+              <button class="btn btn-default">View Passengers</button>
           </form>
+           </div>
+          </div>
+          </div>
       <% }); %>
-      
-      <li>Past Trips: </li>
+   
+      </div>
+      <div class="container">
+      <h4>Past Trips: </h4>
       <% trips.forEach(function(trip){ %>
             <% if(trip.date.getTime() <= Date.now()){ %> 
                  <li><%= trip.origin %> -> <%= trip.destination %></li>
@@ -80,7 +186,7 @@
                         <option value="5">5 stars</option>
                       </select>
                       <br><br>
-                      <button>Leave a Rating</button>
+                      <button class="btn btn-default">Leave a Rating</button>
                 </form>
                  
             <% } %>
@@ -88,8 +194,9 @@
       
        <% } %>
     </div>
+    </div>
  
-      
+      </div>
       </body>
        
       

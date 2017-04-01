@@ -1,24 +1,8 @@
 <html>
 <head>
   <title>Hitchhikers</title>
-  <% include ./partials/header %>
 
-
-<style type="text/css">
-body{
-  background: url("img-1.JPG");
-  background-size: cover;
-  background-position: center;
-  font-family: 'Open Sans', sans-serif;
-  background-repeat: no-repeat;
-}
-</style>
-
-
-<script src="wow.min.js"></script>
-              <script>
-              new WOW().init();
-              </script>
+       <% include ./partials/header %>
 
 
 </head>
@@ -27,26 +11,26 @@ body{
 
 <!-- *********** NAVIGATION BAR  ************** -->
 
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
+ <!-- Header -->
+    <a name="about"></a>
+    <div class="intro-header">
+        <div class="container">
 
-
-
-
-
-      <div class="container welcome">
-        <div class="row">
-          <div class="col-lg-12">
-            <div id="content">
-              <h1>Hitchhikers</h1>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        <h1>Hitchhikers</h1>
               <h3>You never thought you'd get paid for travelling.</h3>
-              <hr>
-              <button class="btn btn-default btn-lg"><a href="#begin-trip">Get On The Road </a>  <i class="fa fa-thumbs-o-up" style="font-size:25px" aria-hidden="true"></i></button>
+                        <hr>
+                        <button class="btn btn-default btn-lg" style="padding-bottom: 40px;"><a href="#begin-trip">Get On The Road </a>  <i class="fa fa-thumbs-o-up" style="font-size:25px" aria-hidden="true"></i></button>
+                    </div>
+                </div>
             </div>
-          </div>
+
         </div>
-      </div>
-</div>
+        <!-- /.container -->
+
+    </div>
 
 <!-- Date picker form -->
 <div id="begin-trip">

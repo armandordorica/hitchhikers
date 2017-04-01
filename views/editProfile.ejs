@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <% include ./partials/header %>
         
     </head>
     <body>
+        <div class="container">
         <h1>Edit Profile</h1>
-        <form action="/profile/edit?_method=PUT" method="POST">
-            <div>Name: <input type="text" name="name" placeholder="<%= user.name %>" required></div>
-            <div>Email: <input type="email" name="email" placeholder="<%= user.email %>" required></div>
+        <form class="form-horizontal profile-form" action="/profile/edit?_method=PUT" method="POST">
+            <div class="form-group"><strong>Name:</strong> <input class="form-control" type="text" name="name" placeholder="<%= user.name %>" required></div>
+            <div class="form-group"><strong>Email:</strong> <input class="form-control" type="email" name="email" placeholder="<%= user.email %>" required></div>
             <!-- <div>Username: <input type="text" name="username" placeholder="<%= user.username %>" required></div> -->
-            <div>Password: <input type="password" name="password" placeholder="<%= user.password %>" required></div>
-            <div>Description <textarea name="description" required><%= user.description %></textarea></div>
-            <button>Change!</button>
+            <div class="form-group"><strong>Password:</strong> <input class="form-control" type="password" name="password" placeholder="<%= user.password %>" required></div>
+            <div class="form-group"><strong>Description:</strong> <textarea class="form-control" name="description" required><%= user.description %></textarea></div>
+            <button class="btn btn-default">Change!</button>
         </form>
+        </div>
     </body>
 </html>

@@ -5,62 +5,71 @@
 <h1 style="color: black;">Available Trips</h1>
 
 <body>
-  <div class="form-inline form-group panel panel-default">
+    <div class="row">
+  <div class="col-md-3 form-inline form-group panel panel-default input-group ">
       <div class="panel-heading">
-          <h4>Filter by</h4>
+          <h4 style="text-align:center;">Filter by</h4>
       </div>
 
   
 <form class="form-group" method="POST"  action="/trips">
     <div class="row">
         
-    <div class="col-md-2">
+    <div class="col-md-12">
     <input class="form-control"  type="text" name="origin" placeholder="Origin">
     </div>
     
-    <div class="col-md-2">
+    <div class="col-md-12">
     <input class="form-control"  type="text" name="destination" placeholder="Destination">
     </div>
     
-    <div class="col-md-2">
+    <div class="col-md-12">
     <input class="form-control" type="number" name="priceMin" placeholder="Minimum Price">
     </div>
+    </div>
     
+    <div class="row">
     
-    <div class="col-md-2">
+    <div class="col-md-12">
     <input class="form-control" type="number" name="priceMax" placeholder="Maximum Price">
     </div>
     
-    <div class="col-md-2">
+    <div class="col-md-12">
     <input class="form-control" type='number' name="seats" placeholder='Minimum Available Seats'>
     </div>
     
-    <div class="col-md-2">
+    <div class="col-md-12">
     <input class="form-control" type="text" name="sortBy" placeholder="Sort By">
     </div>
     
-    <div class="col-md-2">
+    <div class="col-md-12">
     <input class="form-control" type="text" name="order" placeholder="Increasing/Decreasing">
-    </div> 
-    <button class="btn btn-default">Search</button>
+    </div>
+    
+    <div class="col-md-12">
+            <button class="btn btn-default btn-block">Search</button>
+    </div>
+
     </div>
   
     
 </form>
 </div>
 
-    
-</form>
+
+    <h1 style="text-align:center; font-size:50; color:black;">Results</h1>
+
 
 <% if(length > 0){ %>
     
 
     <% trips.forEach(function(trip){ %>
+    
         <% if((trip.driver !== undefined) && (trip.driver !== null)){ var driverRating = trip.driver.rating; }else{ var driverRating = "";}; %>
 
        
            
-           <div class="panel panel-default">
+           <div class="col-md-6 panel panel-default">
             <table class="table table-user-information">
                     <tbody>
                       <tr>
@@ -77,7 +86,7 @@
                       </tr>
                       <tr>
                         <td><strong>Price:</strong></td>
-                        <td><%= trip.price %></td>
+                        <td>$<%= trip.price %></td>
                       </tr>
                       <tr>
                         <td><strong>Available Seats:</strong></td>
@@ -115,7 +124,8 @@
     <strong> There are no trips that match your search. </strong>
     
 <% }; %>
-
+</div>
+</div>
 <!--
 <script>
     $('button.addTripButton').click( function() {

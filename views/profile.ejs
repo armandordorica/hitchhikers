@@ -10,16 +10,16 @@
 
       <div class="row">
         <div class="col-md-4">
-                   <p style="text-align: center; padding-top:30px; padding-bottom:20px;"><img alt="User Pic" src="joe-gardner.jpg"  align="middle" class="img-thumbnail img-responsive"></p>
+                   <p style="text-align: center; padding-top:30px; padding-bottom:20px;"><img alt="User Pic" src="emptyProfile.png"  align="middle" class="img-thumbnail img-responsive"></p>
 
     <div class="panel panel-default">
       <div class="panel-heading" style="text-align:center;">User Information</div>
-      <div class="panel-body" style="padding-left:20%;">
-      <ul style="list-style: none;">
+      <div class="panel-body" >
+      <ul style="padding-left: 20px;">
          <li><strong>Name:</strong> <%= user.name %> </li>
-        <li><strong>Email:</strong>email: <%= user.name %> </li>
-        <li><strong>Password:</strong> <%= user.name %> </li>
-        <li><strong>Description:</strong> <%= user.name %> </li>
+        <li><strong>Email:</strong><%= user.email %> </li>
+        <li><strong>Password:</strong> <%= user.password %> </li>
+        <li><strong>Description:</strong> <%= user.description %> </li>
         <li><strong>Driver:</strong> <%= user.accountType %></li>
         <!--<li>Driver's License <span class="glyphicon glyphicon-ok"></span></li>-->
         <!--<li>Email address <span class="glyphicon glyphicon-ok"></span></li>-->
@@ -37,7 +37,7 @@
         <button class="btn btn-default">Edit Profile</button>
     </form>
                         <div class="profile-description">
-                          </p>Hi, I'm Ashley, a 2nd year Poli Sci and Econ student at McGill. I'm obviously from Toronto and I am looking for some people to ride with me and share costs.</p>
+                          </p><%= user.description %></p>
                         </div>
                     </div>
 
@@ -113,31 +113,33 @@
         
            
     <% if(!user.accountType){ %>
-    <form action = "/profile?_method=PUT" method = "POST">
-        <div>Become a Driver: 
+    <form  action = "/profile?_method=PUT" method = "POST">
+        <div class="form-group"><h4>Become a Driver:</h4> 
             <div> Licence Information: *(Ontario and New York Licences Currently Supported)
-                <input type="text" name="driverButton" pattern="[A-Z]\d{4}-?\d{5}-?\d{5}|\d{9}" required>
+                <input class="form-control" type="text" name="driverButton" pattern="[A-Z]\d{4}-?\d{5}-?\d{5}|\d{9}" required>
             </div>
             <div> Vehicle Make: 
-                <input type="text" name="make" required>
+                <input class="form-control"type="text" name="make" placeholder="i.e. Toyota" required>
             </div>
             <div> Vehicle Model: 
-                <input type="text" name="model" required>
+                <input class="form-control" type="text" name="model" placeholder="i.e. Corolla" required>
             </div>
             <div> Vehicle Year: 
-                <input type="text" name="year" required>
+                <input class="form-control" type="text" name="year" placeholder="i.e. 2017" required>
             </div>
             <div> Vehicle Colour: 
-                <input type="text" name="colour" required>
+                <input class="form-control" type="text" name="colour" placeholder="red, white..." required>
             </div>
             <div> Available Seats: 
-                <input type="text" name="seats" required>
+                <input class="form-control" type="text" name="seats" placeholder="1, 2, 3..." required>
             </div>
             <div> Licence Plate: 
-                <input type="text" name="licencePlate" required>
+                <input class="form-control" type="text" name="licencePlate" required>
+            </div>
+            <div class="panel panel-default">
+                <button class="btn btn-default btn-block">Become a Driver</button>
             </div>
             
-            <button>Become a Driver</button>
         </div>
       </form>
       <% } else { %>

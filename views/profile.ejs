@@ -10,7 +10,7 @@
 
       <div class="row">
         <div class="col-md-4">
-                   <p style="text-align: center; padding-top:30px; padding-bottom:20px;"><img alt="User Pic" src="joe-gardner.jpg"  align="middle" class="img-thumbnail img-responsive"></p>
+                   <p style="text-align: center; padding-top:30px; padding-bottom:20px;"><img alt="User Pic" src="emptyProfile.png"  align="middle" class="img-thumbnail img-responsive"></p>
 
     <div class="panel panel-default">
       <div class="panel-heading" style="text-align:center;">User Information</div>
@@ -137,7 +137,7 @@
     <form  action = "/profile?_method=PUT" method = "POST">
         <div class="form-group"><h4>Become a Driver:</h4> 
             <div> Licence Information: *(Ontario and New York Licences Currently Supported)
-                <input class="form-control" type="text" name="driverButton" pattern="[A-Z]\d{4}-?\d{5}-?\d{5}|\d{9}" required>
+                <input class="form-control" type="text" name="driverButton" placeholder="D0000-11111-22222" pattern="[A-Z]\d{4}-?\d{5}-?\d{5}|\d{9}" required>
             </div>
             <div> Vehicle Make: 
                 <input class="form-control"type="text" name="make" placeholder="i.e. Toyota" required>
@@ -155,7 +155,7 @@
                 <input class="form-control" type="text" name="seats" placeholder="1, 2, 3..." required>
             </div>
             <div> Licence Plate (No Spaces): 
-                <input class="form-control" type="text" name="licencePlate" pattern = ".{6}" required>
+                <input class="form-control" type="text" name="licencePlate" placeholder="AAA000" pattern = ".{6}" required>
             </div>
             <div class="panel panel-default">
                 <button class="btn btn-default btn-block">Become a Driver</button>
@@ -287,9 +287,5 @@
       </div>
  
       </div>
-      </body>
-       
-      
-      
-      
-</html>
+      </div>
+  <% include ./partials/footer %>

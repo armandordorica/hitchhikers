@@ -159,7 +159,7 @@ router.post("/trips", function(req, res){
 //TRIP DETAILS PAGE
 // called from trips page "view details"
 router.get("/trip/:id", isLoggedIn, function(req, res) {
-    var tripID = req.params.id;
+    var tripID = req.param("id");
     console.log("tripID is: " + tripID);
     Trip.findById(tripID).populate('driver', 'passengers').exec(function(err,trip){
         if(err) {
@@ -234,6 +234,7 @@ router.get("/trip/:id/passengers", function(req, res) {
     // })
     
     var tripID = req.params.id;
+    console.log("req.params(id) is" + req.param("id"));
     Trip.findById(tripID).populate("passengers", "driver").exec(function(err,trip){
         console.log(trip);
         if(err){

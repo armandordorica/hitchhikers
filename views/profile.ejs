@@ -10,16 +10,16 @@
 
       <div class="row">
         <div class="col-md-4">
-                   <p style="text-align: center; padding-top:30px; padding-bottom:20px;"><img alt="User Pic" src="emptyProfile.png"  align="middle" class="img-thumbnail img-responsive"></p>
+                   <p style="text-align: center; padding-top:30px; padding-bottom:20px;"><img alt="User Pic" src="joe-gardner.jpg"  align="middle" class="img-thumbnail img-responsive"></p>
 
     <div class="panel panel-default">
       <div class="panel-heading" style="text-align:center;">User Information</div>
-      <div class="panel-body" >
-      <ul style="padding-left: 20px;">
+      <div class="panel-body" style="padding-left:20%;">
+      <ul style="list-style: none;">
          <li><strong>Name:</strong> <%= user.name %> </li>
-        <li><strong>Email:</strong><%= user.email %> </li>
-        <li><strong>Password:</strong> <%= user.password %> </li>
-        <li><strong>Description:</strong> <%= user.description %> </li>
+        <li><strong>Email:</strong> <%= user.email %> </li>
+        <!-- <li><strong>Password:</strong> <%=// user.password %> </li> -->
+        <!-- <li><strong>Description:</strong> <%= //user.description %> </li> -->
         <li><strong>Driver:</strong> <%= user.accountType %></li>
         <!--<li>Driver's License <span class="glyphicon glyphicon-ok"></span></li>-->
         <!--<li>Email address <span class="glyphicon glyphicon-ok"></span></li>-->
@@ -27,6 +27,27 @@
       </ul>
     </div>
     </div>
+    
+    <% if((user.accountType) && (vehicles !== undefined) && (vehicles !== null)){ %>
+        <% vehicles.forEach(function(vehicle){ %>
+            <div class="panel panel-default">
+              <div class="panel-heading" style="text-align:center;">Vehicle Information</div>
+              <div class="panel-body" style="padding-left:20%;">
+              <ul style="list-style: none;">
+                 <li><strong>Vehicle Make:</strong> <%= vehicle.make %> </li>
+                <li><strong>Vehicle Model:</strong> <%= vehicle.model %> </li>
+                <!-- <li><strong>Password:</strong> <%=// user.password %> </li> -->
+                <!-- <li><strong>Description:</strong> <%= //user.description %> </li> -->
+                <li><strong>Vehicle Year:</strong> <%= vehicle.year %></li>
+                <li><strong>Numberof Seats:</strong> <%= vehicle.seatsAvailable %></li>
+                <!--<li>Driver's License <span class="glyphicon glyphicon-ok"></span></li>-->
+                <!--<li>Email address <span class="glyphicon glyphicon-ok"></span></li>-->
+                <!--<li>Phone number <span class="glyphicon glyphicon-ok"></span></li>-->
+              </ul>
+            </div>
+            </div>
+        <% }) %>    
+    <% } %>
 
                    </div>
                    <div class="col-md-8">
@@ -37,7 +58,7 @@
         <button class="btn btn-default">Edit Profile</button>
     </form>
                         <div class="profile-description">
-                          </p><%= user.description %></p>
+                          </p><%=user.description %></p>
                         </div>
                     </div>
 
@@ -49,7 +70,7 @@
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star"></span>
                             <span class="glyphicon glyphicon-star-empty"></span>
-                            4.0 stars
+                            <%= user.rating %> stars
                         </p>
                     </div>
                     <div class="well">
@@ -133,8 +154,8 @@
             <div> Available Seats: 
                 <input class="form-control" type="text" name="seats" placeholder="1, 2, 3..." required>
             </div>
-            <div> Licence Plate: 
-                <input class="form-control" type="text" name="licencePlate" required>
+            <div> Licence Plate (No Spaces): 
+                <input class="form-control" type="text" name="licencePlate" pattern = ".{6}" required>
             </div>
             <div class="panel panel-default">
                 <button class="btn btn-default btn-block">Become a Driver</button>
@@ -147,56 +168,123 @@
           <button class="btn btn-default">Create Trip</button>
       </form>
       
-      <div class="panel panel-default">
-      <div class="panel-heading" style="text-align:center;">My trips</div>
-      <div class="panel panel-default">
-  
-
-      <% trips.forEach(function(trip){ %>
-      <div class="panel panel-default">
+    <% if(user.accountType){ %>
+    <!-- ****** My trips as a driver ****** -->
+          <div class="panel panel-default">
+          <div class="panel-heading" style="text-align:center;">My Trips as a Driver</div>
+          <div class="panel panel-default">
+      
+        <div class="container">
+          <h4>Future Trips: </h4>
+          <% driverTrips.forEach(function(trip){ %>
+          <% if (trip.date >= new Date()){ %> 
+          <div class="panel panel-default">
+              <div class="container">
+              <li><strong>From: </strong><%= trip.origin %> <strong>to: </strong> <%= trip.destination %></li>
+                 <div class="btn-group btn-group-justified">
+                <% if(trip.date.getTime() >= Date.now() + 86400000){ %> 
+                <% //if(trip.date >= new Date()){ %> 
+                    <form method="POST" action="/tripDelete/<%=trip._id%>?_method=DELETE">
+                      <button class="btn btn-default">Delete</button>
+                    </form>
+                <% } else if ((trip.date.getTime() >= Date.now()) && (trip.date.getTime() <= Date.now() + 86400000)){ %>
+                    <div>Cannot Cancel Trip! Trip Occurs in the Next 24h</div>
+                <% } %>
+              <form method="GET" action="/trip/<%=trip._id%>/passengers">
+                  <button class="btn btn-default">View Passengers</button>
+              </form>
+              <form method="GET" action="/trip/<%=trip._id%>">
+                  <button class="btn btn-default">View Trip</button>
+              </form>
+               </div>
+              </div>
+              </div>
+              <% } %>
+          <% }); %>
+          
+    
           <div class="container">
-          <li><strong>From: </strong><%= trip.origin %> <strong>to: </strong> <%= trip.destination %></li>
-             <div class="btn-group btn-group-justified">
-            <% if(trip.date.getTime() >= Date.now() + 86400000){ %> 
-                <form method="POST" action="/trip/<%=trip._id%>?_method=DELETE">
-                  <button class="btn btn-default">Delete</button>
-                </form>
-            <% } else { %>
-                <div>Cannot Delete Trip! Trip Occurs in the Next 24h</div>
-            <% } %>
-          <form method="GET" action="/trip/<%=trip._id%>/passengers">
-              <button class="btn btn-default">View Passengers</button>
-          </form>
-           </div>
-          </div>
-          </div>
-      <% }); %>
-   
-      </div>
-      <div class="container">
-      <h4>Past Trips: </h4>
+          <h4>Past Trips: </h4>
+          <% driverTrips.forEach(function(trip){ %>
+              
+                <% //if(trip.date.getTime() <= Date.now()){ %> 
+                <% if(trip.date <= new Date()){ %>
+                     <li><%= trip.origin %> -> <%= trip.destination %></li>
+                    <a class="btn btn-default" href="/trip/new?origin=<%=trip.origin%>&destination=<%=trip.destination%>&price=<%=trip.price%>">Repost</a> 
+                    <form method="GET" action="/trip/<%=trip._id%>">
+                      <button class="btn btn-default">View Trip</button>
+                    </form>
+                <% } %>
+                
+          <% }); %>
+          
+           
+        </div>
+        </div>
+        </div>
+        
+    <% } %>
+    <% } %>
+    
+    <!-- ****** My trips as a passenger ****** -->
+    <div class="panel panel-default">
+      <div class="panel-heading" style="text-align:center;">My Trips as a Passenger</div>
+      <div class="panel panel-default">
+      <h4>Future Trips: </h4>
+  
+    <% //console.log(trips); %>
       <% trips.forEach(function(trip){ %>
-            <% if(trip.date.getTime() <= Date.now()){ %> 
-                 <li><%= trip.origin %> -> <%= trip.destination %></li>
-                 
-                 <form method="POST" action="/profile/rate/<%=trip._id%>">
-                      <select name="rating">
-                        <option value="1">1 star</option>
-                        <option value="2">2 stars</option>
-                        <option value="3">3 stars</option>
-                        <option value="4">4 stars</option>
-                        <option value="5">5 stars</option>
-                      </select>
-                      <br><br>
-                      <button class="btn btn-default">Leave a Rating</button>
-                </form>
-                 
-            <% } %>
+      
+      <div class="panel panel-default">
+          <% if (trip.date.getTime() >= Date.now()){ %>
+              <div class="container">
+              <li><strong>From: </strong><%= trip.origin %> <strong>to: </strong> <%= trip.destination %></li>
+                 <div class="btn-group btn-group-justified">
+                <% if(trip.date.getTime() >= Date.now() + 86400000){ %> 
+                    <form method="POST" action="/tripCancel/<%=trip._id%>">
+                      <button class="btn btn-default">Cancel Trip</button>
+                    </form>
+                <% } else { %>
+                    <div>Cannot Cancel Trip! Trip Occurs in the Next 24h</div>
+                <% } %>
+              <form method="GET" action="/trip/<%=trip._id%>/passengers">
+                  <button class="btn btn-default">View Passengers</button>
+              </form>
+              <form method="GET" action="/trip/<%=trip._id%>">
+                  <button class="btn btn-default">View Trip</button>
+              </form>
+               </div>
+              </div>
+              </div>
+            <% } %>  
       <% }); %>
       
-       <% } %>
-    </div>
-    </div>
+      <h4>Past Trips: </h4>
+          <% trips.forEach(function(trip){ %>
+              
+                <% //if(trip.date.getTime() <= Date.now()){ %> 
+                <% if(trip.date <= new Date()){ %>
+                     <li><%= trip.origin %> -> <%= trip.destination %></li>
+                     
+                     <form method="POST" action="/profile/rate/<%=trip._id%>">
+                          <select name="rating">
+                            <option value="1">1 star</option>
+                            <option value="2">2 stars</option>
+                            <option value="3">3 stars</option>
+                            <option value="4">4 stars</option>
+                            <option value="5">5 stars</option>
+                          </select>
+                          <br><br>
+                          <button class="btn btn-default">Leave a Rating</button>
+                    </form>
+                    <form method="GET" action="/trip/<%=trip._id%>">
+                      <button class="btn btn-default">View Trip</button>
+                    </form>
+                     
+                <% } %>
+                
+          <% }); %>
+      </div>
  
       </div>
       </body>

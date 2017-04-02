@@ -17,7 +17,6 @@ var userRoutes = require("./routes/usersRoute");
 
 
 
-
 var connectedToDatabase
 
 //Sam: I've added a callback function so the server doesn't crashs
@@ -99,6 +98,12 @@ app.use(authRoutes);
 app.use(userRoutes);
 app.use(tripRoutes);
 
+
+
+
+app.get("/sayHello", function(req, res) {
+    res.render("email.ejs");
+})
 
 //**** Any other Users **** necessary?
 app.get("*", function(req,res){

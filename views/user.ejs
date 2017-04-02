@@ -4,4 +4,13 @@
     <b>Description:</b> <%= user.description %>
     <b></b>
 </p>
-    
+<% console.log("inside /user/id vehicles is " + vehicles); %>
+<% if((vehicles !== undefined) && (vehicles !== null)){ %>
+    <% vehicles.forEach(function(vehicle){
+        <h2>Vehicle Information </h2>
+        <b>Make:</b> <%= vehicle.make %>
+        <b>Model:</b> <%= vehicle.model %>
+        <b>Year:</b> <%= vehicle.year %>
+    <% }) %>
+<% } %>
+

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
     <head>
         <h1> Passengers </h1>
@@ -8,15 +9,22 @@
         <!-- Iterates through the trip passengers that have shown interest in the trip.passengers array
         then for each passenger(user) prints their name and a button that links the user to the passenger profile-->
         
-        <div> <%= trip.passengers[0] %></div> 
+        <% if ((driver !== null) && (driver !== undefined)){ %>
+            <b> Driver: </b> <%= driver.name %>
+        <% } %>
         
-        <% if((trip.passengers != undefined) || (trip.passengers != null)){ %>
-            <div>here</div>
-            <% trip.passengers.forEach(function(passenger){ %>
-                <li><b> Passenger name: </b><%= passenger.name %>, <b> Passenger ID (for testing purposes): </b> <%=passenger._id%></li>
-                <form method="GET" action="/user/<%= passenger.id %>">
-                    <button>Show Profile</button>
-                </form>
+
+        <% var count = 0 %>
+        <% if((passengerIDs != undefined) || (passengersIDs != null)){ %>
+            <% passengerIDs.forEach(function(passengerID){ %>
+                        <li><b> Passenger name: </b> <%= passengerNames[count] %></li>
+                        
+                        <form method="GET" action="/user/<%= passengerID %>">
+                            <button>Show Profile</button>
+                        </form>
+                        <% count = count + 1 %>
+                        
+                        
             <% }); %>
             
         <% }else{ %>

@@ -14,15 +14,16 @@
                 <form action="/trip/new" method="POST">
                     <div>
                         <p>Origin</p>
-                        <input type="text" name="origin" placeholder="Origin" required>
+                        <input type="text" name="origin" placeholder="Origin" <% if((origin !== undefined) && (origin !== null) && (origin !== "")){ %> value= <%= origin %> <% } %> required>
+                         
                     </div>
                     <div>
                         <p>Destination</p>
-                        <input type="text" name="destination" placeholder="Destination" required>
+                        <input type="text" name="destination" placeholder="Destination" <% if((destination !== undefined) && (destination !== null) && (destination !== "")){ %> value= <%= destination %> <% } %> required>
                     </div>
                     <div>
                         <p>Price</p>
-                        <input type="number" name="price" placeholder="Price" required>
+                        <input type="number" name="price" placeholder="Price" <% if((price !== undefined) && (price !== null) && (price !== "")){ %> value= <%= price %> <% } %> required>
                     </div>
                     <div>
                         <p>Seats:</p>

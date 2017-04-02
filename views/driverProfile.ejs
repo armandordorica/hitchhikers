@@ -10,3 +10,17 @@
         <div></div>
     </body>
 </html>
+
+<% if(user.accountType == true){ %>
+    <h2>Vehicle Information </h2>
+    <% if((vehicles !== undefined) && (vehicles !== null)){ %>
+        <% var count = 1 %>
+        <% vehicles.forEach(function(vehicle){ %>
+            <b>Vehicle <%=count%></b>
+            <% count = count +1 %>
+            <li><b>Make:</b> <%= vehicle.make %></li>
+            <li><b>Model:</b> <%= vehicle.model %></li>
+            <li><b>Year:</b> <%= vehicle.year %></li>
+        <% }) %>
+    <% } %>
+<% } %>

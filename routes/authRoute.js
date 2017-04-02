@@ -4,12 +4,35 @@ var User = require("../models/user");
 var Trip = require("../models/trip");
 var mongoose = require("mongoose");
 var passport = require("passport");
+var FacebookStrategy = require("passport-facebook").Strategy;
+
+
+var nodemailer = require('nodemailer');
+var smtpTransport = require('nodemailer-smtp-transport');
+
 //********REGISTER ROUTES********
 
 //get requests serve a page when that file is accessed
 router.get("/", function(req, res){   
     res.render("hitchhikers.ejs");
 });
+
+
+
+//********For Facebook*********
+
+passport.use(new FacebookStrategy({
+    clientID: 1442992375731712,
+    clientSecret: "cccb69ea0bc9f3e33481eacf1453ac41",
+    callbackURL: "http://localhost:3000/auth/facebook/callback"
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    User.findOrCreate({ _id: profile.id, email: profile.emails[0].value, username: profile.name.givenName, password: profile.name.givenName }, function (err, user) {
+      return cb(err, user);
+    });
+  }
+));
+
 
 var connectedToDatabase = true;
 //****************LANDING*************************
@@ -74,6 +97,45 @@ router.get("/register", function(req, res){
 router.post("/register", function(req, res){
     req.body.username;
     req.body.password;
+    
+
+    console.log("Is the email form working");
+    var transporter = nodemailer.createTransport(smtpTransport({
+        service: 'Gmail',
+        auth: {
+            user: 'hitchhikers428@gmail.com',
+            pass: 'Hitchhikers2017'
+        }
+    }));
+    
+    // verify connection configuration
+    transporter.verify(function(error, success) {
+       if (error) {
+            console.log(error);
+       } else {
+            console.log('Server is ready to take our messages');
+       }
+    });
+    
+    var text = "Your account has been created";
+    
+    var mailOptions = {
+        from: "hitchhikers428@gmail.com", // sender address
+        to: req.body.email, // list of receivers
+        subject: "Thanks for Signing Up!", // Subject line
+        text: text //, // plaintext body
+        // html: '<b>Hello world ✔</b>' // You can choose to send an HTML body instead
+    };
+   
+    transporter.sendMail(mailOptions, function(err, info){
+        if(err){
+            console.log(err);
+        }else{
+            console.log('Message sent: ' + info.response);
+        };
+    });
+
+
     if(req.body.password !== req.body.confirm){
         res.render("register", {error: "Passwords do not match"});
     } else {
@@ -105,6 +167,18 @@ router.get("/login", function(req,res){
     res.render("login.ejs", {error: ""} );
 });
 
+
+
+router.get('/login',
+  passport.authenticate('facebook'));
+
+router.get('/login',
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/trips');
+  });
+
 //NEW LOGIN LOGIC
 //allows for errors to be passed and displayed for incorrect username or password
 router.post('/login', function(req, res, next) {
@@ -113,7 +187,7 @@ router.post('/login', function(req, res, next) {
     if (!user) { return res.render('login', {error: info}); }
     req.logIn(user, function(err) {
       if (err) { return next(err); }
-      return res.redirect('profile');
+      return res.redirect('/profile');
     });
   })(req, res, next);
 });

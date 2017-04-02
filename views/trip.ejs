@@ -1,45 +1,59 @@
-<% include ./partials/header %>
+<% //include ./partials/header %>
 <h1>Trip Details</h1>
 
 <p><b>Origin:</b> <%= trip.origin %>, <b>Destination:</b> <%= trip.destination %>, <b>Date:</b> <%= trip.date %> <b>Available Seats: </b><%=trip.availableSeats%></p>
 
-<% if((trip.driver !== null) && (trip.driver !== undefined)){ %>
-<p><b>Driver: </b><%=driver.name%> <b>Driver Rating: </b><%=driver.rating%></p>
-    <div>
-        <form method="GET" action="/user/<%= driver._id %>">
-        <button>Driver Profile</button>
-        </form>
-    </div>
-<% } %>
+<% if((trip !== null) && (trip !== undefined)){ %>
 
-<!-- input vehicle details -->
-<% if((trip.vehicle !== null) && (trip.vehicle !== undefined)){ %>
-<p><b>Vehicle Name: </b><%=trip.vehicle.name%> <b>Vehicle Make: </b><%=trip.vehicle.yearMakeModel%> \n<b>Colour: </b><%=trip.vehicle.colour%> </p>
-<% } %>
 
-<%if((trip.availableSeats > 0 && user._id != driver._id)) { %>
-    <div>
-        <form method="POST" action="/trip/<%= trip._id %>?_method=PUT">
-            <button>JOIN TRIP</button>
-        </form>
-    </div>
-<% } else if(trip.availableSeats <= 0) { %>
-    <div>Trip is Full</div>
-<% } %>
-
-<!--sends a post request to /trip/:id but ?_method=DELETE masks it as a delete request-->
-<% if(user !== undefined) {%>
-    <% if(user._id == trip.driver._id ){ %>
-        <% if(trip.date.getTime() >= Date.now() + 86400000){ %>
-            <form method="POST" action="/trip/<%=trip._id%>?_method=DELETE">
-            <button>Delete</button>
+    <% if((trip.driver !== null) && (trip.driver !== undefined)){ %>
+    <p><b>Driver: </b><%=driver.name%> <b>Driver Rating: </b><%=driver.rating%></p>
+        <div>
+            <form method="GET" action="/user/<%= driver._id %>">
+            <button>Driver Profile</button>
             </form>
-        <% } else { %>
-            <div>Cannot Delete Trip! Trip Occurs in the Next 24h</div>
-        <% } %>
-        <form method="GET" action="/trip/<%=trip._id %>/passengers"><button>View Passengers</button></form>
+        </div>
     <% } %>
-<% } %>
+    
+    <!-- input vehicle details -->
+    <% if((trip.vehicle !== null) && (trip.vehicle !== undefined)){ %>
+    <p><b>Vehicle Name: </b><%=trip.vehicle.name%> <b>Vehicle Make: </b><%=trip.vehicle.yearMakeModel%> \n<b>Colour: </b><%=trip.vehicle.colour%> </p>
+    <% } %>
+    
+    <%if((trip.availableSeats > 0 && user._id != driver._id)) { %>
+        <div>
+            <form method="POST" action="/trip/<%= trip._id %>?_method=PUT">
+                <button>JOIN TRIP</button>
+            </form>
+        </div>
+    <% } else if(trip.availableSeats <= 0) { %>
+        <div>Trip is Full</div>
+    <% } %>
+    
+    <!--sends a post request to /trip/:id but ?_method=DELETE masks it as a delete request-->
+    <% if(user !== undefined) {%>
+        <% if(user._id == trip.driver._id ){ %>
+            <% if(trip.date.getTime() >= Date.now() + 86400000){ %>
+                <form method="POST" action="/trip/<%=trip._id%>?_method=DELETE">
+                <button>Delete</button>
+                </form>
+            <% } else { %>
+                <div>Cannot Delete Trip! Trip Occurs in the Next 24h</div>
+            <% } %>
+            <form method="GET" action="/trip/<%=trip._id %>/passengers"><button>View Passengers</button></form>
+        <% } else { %>
+        <button onclick="myFunction()">View Passengers</button>
+
+        <script>
+            function myFunction() {
+                alert("cannot view passengers if not the driver! Please make a trip!");
+                }
+        </script>
+        <% } %>
+        
+    <% } %>
+    
+    <% } %>
 <!--TODO: place a PUT request form here to update the Trip details if a user is interested-->
 <!--
 <form action="/trip/id:?_method=PUT" method="POST">

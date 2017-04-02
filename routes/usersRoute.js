@@ -5,6 +5,7 @@ var User = require("../models/user");
 var Trip = require("../models/trip");
 var Vehicle = require("../models/vehicle");
 var mongoose = require("mongoose");
+
 //mongoose.Promise = require('bluebird');
 
 
@@ -25,7 +26,25 @@ router.get("/user/:id", function(req, res) {
             console.log("Could not find user");
         }else{
             console.log(user._id);
-            res.render("driverProfile.ejs", {user: user});
+            // find vehicle(s)
+            var vehicleArray = new Array();
+            console.log("user is a driver: " + user.accountType);
+            if(user.accountType == true){
+                Vehicle.find({driver: userID}).exec(function(err, vehicles){
+                    if(err){
+                        console.log("Error finding driver's vehicles");
+                    }else{
+                        vehicles.forEach(function(vehicle){
+                            vehicleArray.push(vehicle);
+                            res.render("driverProfile.ejs", {user: user, vehicles: vehicleArray});
+                            console.log("inside for loop, vehicleArray is " + vehicleArray);
+                        })
+                    }
+                });
+            }else{
+                res.render("driverProfile.ejs", {user: user, vehicles: vehicleArray});
+            }
+            
         }
     });
 });
@@ -66,9 +85,37 @@ router.put("/profile/edit", isLoggedIn, function(req, res) {
 router.get("/profile", isLoggedIn, function(req,res){
     var count = 0;
     var Trips = [];
+    var driverTrips = [];
     var counter = 0;
+    var userID = req.user._id;
+    console.log("user is " + userID);
     
-
+    // find vehicle
+    var vehicleArray = new Array();
+    Vehicle.find({driver: userID}).exec(function(err, vehicles){
+        if(err){
+            console.log("Error finding driver's vehicles");
+        }else{
+            vehicles.forEach(function(vehicle){
+                vehicleArray.push(vehicle);
+            })
+        }
+    });
+    console.log("after Vehincle.find vehicleArray is " + vehicleArray);
+    
+    
+    // find trips where user is the driver
+    var theDriverTripQuery = Trip.find({driver: userID});
+    theDriverTripQuery.then(function(trips){
+        trips.forEach(function(trip){
+            if(trip !== null){
+                driverTrips.push(trip);
+                //console.log(trip.date);
+                //console.log("Trips is currently " + Trips);
+            }
+        })
+    });
+    //console.log("in usersRoute driverTrips is " + driverTrips);
    
     for(var index = 0; index < req.user.tripIDs.length; index++){
  
@@ -78,14 +125,15 @@ router.get("/profile", isLoggedIn, function(req,res){
       //  Trips.push(Trip.findById(mongoose.Types.ObjectId(tripID)));
      // console.log(Trip.findById(tripID));
       
-    
-    var theTripQuery = Trip.findById(mongoose.Types.ObjectId(tripID));
-    theTripQuery.then(function(trip){
-        if(trip !== null){
+    //find trips where user is a passenger
+        var theTripQuery = Trip.findById(mongoose.Types.ObjectId(tripID));
+        theTripQuery.then(function(trip){
+            if(trip !== null){
              Trips.push(trip);
-             console.log(trip.date);
+             //console.log(trip.date);
+             //console.log("Trips is currently " + Trips);
 
-        }
+            }
     });
     //console.log(theTripQuery);
     
@@ -110,9 +158,12 @@ router.get("/profile", isLoggedIn, function(req,res){
  //sconsole.log(Trips[index]);
 };
 
+//console.log(Trips);
 function function2() {
     // all the stuff you want to happen after that pause
-   res.render("profile.ejs", {trips: Trips});
+    
+
+   res.render("profile.ejs", {trips: Trips, driverTrips: driverTrips, vehicles: vehicleArray});
 }
 
 
@@ -121,7 +172,7 @@ setTimeout(function2, 3000);
 });
 
 //PUT PROFILE
-//Conatains the logic to update a passenger to driver status, copied what Ivan wrote above
+//Contains the logic to update a passenger to driver status, copied what Ivan wrote above
 //but made it into a put statement. This gets call from the profile page
 router.put("/profile", function(req, res){
     var isDriver = false;
@@ -132,7 +183,7 @@ router.put("/profile", function(req, res){
     //console.log(isDriver);
     var newVehicle = ({
         driver: req.user._id,
-        year: req.body.yeat,
+        year: req.body.year,
         make: req.body.make,
         model: req.body.model,
         colour: req.body.colour,
@@ -252,7 +303,8 @@ function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
         return next();
     }
-    res.redirect("/login");
+    var error = "Must be logged in to access this page"
+    res.render("login", {error: error} );
 }
 
 module.exports = router;

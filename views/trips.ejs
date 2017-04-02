@@ -59,71 +59,75 @@
 
     <h1 style="text-align:center; font-size:50; color:black;">Results</h1>
 
-
-<% if(length > 0){ %>
-    
-
-    <% trips.forEach(function(trip){ %>
-    
-        <% if((trip.driver !== undefined) && (trip.driver !== null)){ var driverRating = trip.driver.rating; }else{ var driverRating = "";}; %>
-
-       
-           
-           <div class="col-md-6 panel panel-default">
-            <table class="table table-user-information">
-                    <tbody>
-                      <tr>
-                        <td><strong>Origin:</strong></td>
-                        <td><%= trip.origin %></td>
-                      </tr>
-                     <tr>
-                        <td><strong>Destination:</strong></td>
-                        <td><%= trip.destination %></td>
-                      </tr>
-                      <tr>
-                        <td><strong>Date:</strong></td>
-                        <td><%= trip.date %></td>
-                      </tr>
-                      <tr>
-                        <td><strong>Price:</strong></td>
-                        <td>$<%= trip.price %></td>
-                      </tr>
-                      <tr>
-                        <td><strong>Available Seats:</strong></td>
-                        <td><%=trip.availableSeats%></td>
-                      </tr>
-                      <tr>
-                        <td><strong>Driver Rating:</strong></td>
-                        <td><%=driverRating%></td>
-                      </tr>
-                      <tr>
-                          <td>
-                              <a class="btn btn-primary btn-default btn-block" href="<%="trip/" + trip._id%> ">view details</a> 
-                          </td>
-                    </tr>
-                        </tbody>
-
-                  </table>
-                  </div>
-           
-           
-            
-            
-    
-            <!--<form method="POST" action=/tripsearch class="addTripForm">
-                 <input type="checkbox" name="addTrip" value=<%=//trip._id%> 
-                <button class="addTripButton" value="<%= trip._id %>" name="tripID">Check to Add Trip</button>
-            </form>-->
-
-        <!--  -->
-        
-    <% }); %>
-  
+<% if ((same !== undefined) && (same !== null) && same) { %>
+    <strong> Error: Please enter a destination which is different than the origin. </strong>
 <% } else { %>
 
-    <strong> There are no trips that match your search. </strong>
+    <% if(length > 0){ %>
+        
     
-<% }; %>
+        <% trips.forEach(function(trip){ %>
+        
+            <% if((trip.driver !== undefined) && (trip.driver !== null)){ var driverRating = trip.driver.rating; }else{ var driverRating = "";}; %>
+            
+           
+               
+               <div class="col-md-6 panel panel-default">
+                <table class="table table-user-information">
+                        <tbody>
+                          <tr>
+                            <td><strong>Origin:</strong></td>
+                            <td><%= trip.origin %></td>
+                          </tr>
+                         <tr>
+                            <td><strong>Destination:</strong></td>
+                            <td><%= trip.destination %></td>
+                          </tr>
+                          <tr>
+                            <td><strong>Date:</strong></td>
+                            <td><%= trip.date %></td>
+                          </tr>
+                          <tr>
+                            <td><strong>Price:</strong></td>
+                            <td>$<%= trip.price %></td>
+                          </tr>
+                          <tr>
+                            <td><strong>Available Seats:</strong></td>
+                            <td><%=trip.availableSeats%></td>
+                          </tr>
+                          <tr>
+                            <td><strong>Driver Rating:</strong></td>
+                            <td><%=driverRating%></td>
+                          </tr>
+                          <tr>
+                              <td>
+                                  <a class="btn btn-primary btn-default btn-block" href="<%="trip/" + trip._id %> ">view details/Leave a Rating</a> 
+                              </td>
+                        </tr>
+                            </tbody>
+    
+                      </table>
+                      </div>
+               
+               
+                
+                
+        
+                <!--<form method="POST" action=/tripsearch class="addTripForm">
+                     <input type="checkbox" name="addTrip" value=<%=//trip._id%> 
+                    <button class="addTripButton" value="<%= trip._id %>" name="tripID">Check to Add Trip</button>
+                </form>-->
+    
+            <!--  -->
+            
+        <% }); %>
+      
+    <% } else { %>
+    
+        <strong> There are no trips that match your search. </strong>
+        
+    <% }; %>
+    <% } %>
 </div>
 </div>
 <!--

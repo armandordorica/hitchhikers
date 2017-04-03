@@ -1,16 +1,426 @@
-<% //include ./partials/header %>
-<h1>Trip Details</h1>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  
+  <style>
+      
+/*****TRIP DETAILS*******/
+#special{
+    background: url('img-4.jpg') no-repeat center center;
 
-<p><b>Origin:</b> <%= trip.origin %>, <b>Destination:</b> <%= trip.destination %>, <b>Date:</b> <%= trip.date %> <b>Available Seats: </b><%=trip.availableSeats%></p>
+  background-position: 0 auto;
+  font-family: 'Open Sans', sans-serif;
+  background-repeat: no-repeat;
+  padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+  padding-bottom: 50px;
+  text-align: center;
+  background-size: cover;
+}
+
+.trip-details h3 { 
+  font-family: 'Pacifico', cursive;
+  color: #d1faff;
+
+}
+
+.panel-default>.panel-heading{ 
+  font-family: 'Pacifico', cursive;
+  background-color: #004e64;
+  font-size: 20px;
+  color: #d1faff;
+}
+
+
+#invoice strong{
+color: black;
+}
+
+ /**********/
+
+body{
+  font-family: 'Open Sans', sans-serif;
+}
+
+a{ 
+  color: #d1faff;
+}
+
+html{
+  height: 100%;
+}
+
+#content { 
+  text-align: center; 
+  padding-top: 30%;
+  padding-bottom: 100px
+}
+
+h1{
+  font-family: 'Pacifico', cursive;
+  color: white;
+  font-size: 70;
+  line-height: 1.7;
+}
+
+h3{
+  color: white;
+  letter-spacing: 3;
+}
+
+h4{
+  font-family: 'Pacifico', cursive;
+  font-size: 25;
+
+}
+
+hr{
+   height: 12px;
+   border-top: 3px solid white ;
+   width: 90%;
+}
+
+/*****************   NAVBAR   ***************/
+.navbar-default {
+  background-color: #004e64;
+  border: #004e64;
+}
+
+.navbar{
+  margin-bottom: 0px;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: #d1faff;
+}
+
+.navbar-default .navbar-nav>li>a:hover{
+  color: #30bced;
+}
+
+.navbar-default .navbar-brand {
+  color: #d1faff;
+  font-family: 'Pacifico', cursive;
+
+}
+
+.btn-default:hover{
+  color: #004e64;
+  background-color: #d1faff;
+}
+
+.navbar-default .navbar-brand:hover{
+  color: #30bced;
+}
+
+
+/*Hamburger thing*/
+.navbar-default .navbar-toggle .icon-bar{ 
+  background-color: #d1faff;
+}
+
+
+/*Get on the road button*/
+.btn-default{
+  background-color: #004e64;
+  color: #d1faff;
+  border: #004e64;
+  height: 40px;
+}
+
+.navbar-default .navbar-toggle{
+  color: #004e64;
+}
+
+/*************** BEGIN TRIP SECTION **********/
+.begin-trip h1{
+  color:black; 
+  text-align: center;
+  padding-top: 70px; 
+  padding-bottom: 50px;
+  font-size: 50px;
+}
+
+.container .begin-trip{
+  padding-bottom: 0px;
+}
+
+#trip-input .container{
+  padding-bottom: 60px;
+}
+
+#trip-input .btn-default{
+  margin-top: 20px;
+}
+/*Bootstrap overwrite*/ 
+
+.container .welcome .btn .btn-default .btn-lg{
+  color: black;
+
+}
+
+.container .welcome h1{
+  font-size: 50px;
+}
+.bg-primary{
+    color: #d1faff;
+    background-color: #004e64;
+}
+
+.bg-primary p, strong{
+  color: #004e64;
+}
+
+.text-primary{
+  color: #004e64  ;
+}
+
+.service-item strong{
+  color: white;
+}
+.row .text-center p{
+  color: #000;
+}
+#services a, strong {
+    text-decoration: none;
+}
+
+#services a:hover{
+  color: #004e64;
+  background-color: #d1faff;
+}
+
+#services p{
+  color: white;
+}
+.btn:hover {
+    color: #004e64;
+    text-decoration: none;
+}
+
+.list-inline li a{
+  color: #004e64;
+}
+
+.list-inline li a:hover{
+  color: #d1faff;
+}
+
+.list-unstyled li a{
+  color: #004e64;
+}
+
+.list-unstyled li a:hover{
+  color: #d1faff;
+}
+
+.footer h4{ 
+color: #004e64;
+}
+/*****************************/ 
+.intro-header {
+    padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url('img-4.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+.intro-message {
+    position: relative;
+    padding-top: 20%;
+    padding-bottom: 20%;
+}
+
+.intro-message > h1 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-size: 5em;
+}
+
+.intro-divider {
+    width: 400px;
+    border-top: 1px solid #f8f8f8;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.intro-message > h3 {
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+}
+
+/****************** Sign Up Heading ******************/
+#signUpHeading h1{
+  padding-top: 0;
+  padding-bottom: 3px;
+}
+
+#signUpForm {
+
+}
+
+.main-center {
+  padding: 20px 30px;
+}
+
+.form-horizontal {
+  margin-right: 30%;
+  margin-left: 30%;
+}
+
+#btn-register{
+  padding-bottom: 35px;
+}
+
+#goBack{
+  color: #004e64;
+}
+
+#goBack > a:hover{
+  color: #d1faff;
+}
+
+#loginButtton{
+   color: #004e64;
+  background-color: #d1faff;
+}
+
+.dark{
+  text-align: center;
+}
+.dark a{
+  color: #004e64;
+  text-align: center;
+}
+
+.dark a:hover {
+  color: #d1faff;
+}
+
+.modal-body {
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+/************** Trip Post ***************/ 
+#postTripForm{
+  margin-right: 0%;
+  margin-left: 0%;
+}
+
+
+
+
+#postTripForm h4{
+  font-size: 40;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+}
+
+
+#postTripGoBack h4{
+  font-size: 10;
+  color: red;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#postTripGoBack a:hover{
+  color: red;
+}
+
+#postTripGoBack a{
+  color: red;
+}
+
+.page-header h1{
+  color: #004e64;
+}
+
+.page-header{
+  color: #004e64;
+}
+
+.profile-form{
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.profile-btn{
+  margin-left: 200px;
+}
+
+.edit-profile hr{
+  color: black;
+}
+
+#edit-profile{
+  color: #004e64;
+  width: 100%;
+   height: 12px;
+    border: 0;
+    box-shadow: inset 0 12px 12px -12px rgba(0,78,100, 0.5);
+}
+
+.page-header{
+  border-bottom: 0px;
+}
+
+#btn-select{
+  padding-left: 50px;
+}
+
+.profile-description {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+
+  </style>
+    </head>
+    <body>
+
+
+
+
+<section id="begin-trip">
+    <div class="container begin-trip" >
+      <div class="row">
+        <div class="col-lg-12">
+          <h1 style="padding-top: 50px;">Your Trip Details</h1>
+            <p style="font-size: 15px; text-align: center;">Here are our trip details before you get on the road. Don't hesitate to contact us for further inquiries. </p>
+
+
+        </div>
+      </div>
+    </div>
+</section>
+<div id="invoice" class="container" style="padding-left:30px;">
+    <div class="col-md-3" ></div>
+    <div class="col-md-6 panel panel-default height" style="padding-left:80px; padding-right:80px; padding-top: 40px; padding-bottom: 40px;">
+         <div class="panel-body">
+<p><b>Origin:</b> <%= trip.origin %><br>
+<b>Destination:</b> <%= trip.destination %><br>
+<b>Date:</b> <%= trip.date %> <br>
+<b>Available Seats: </b><%=trip.availableSeats%></p>
 
 <% if((trip !== null) && (trip !== undefined)){ %>
 
 
     <% if((trip.driver !== null) && (trip.driver !== undefined)){ %>
-    <p><b>Driver: </b><%=driver.name%> <b>Driver Rating: </b><%=driver.rating%></p>
+    <p><b>Driver: </b><%=driver.name%> <br>
+    <b>Driver Rating: </b><%=driver.rating%></p>
         <div>
             <form method="GET" action="/user/<%= driver._id %>">
-            <button>Driver Profile</button>
+            <button class="btn btn-default btn-block">Driver Profile</button>
             </form>
         </div>
     <% } %>
@@ -35,12 +445,12 @@
         <% if(user._id == trip.driver._id ){ %>
             <% if(trip.date.getTime() >= Date.now() + 86400000){ %>
                 <form method="POST" action="/trip/<%=trip._id%>?_method=DELETE">
-                <button>Delete</button>
+                <button class="btn btn-default btn-block">Delete</button>
                 </form>
             <% } else { %>
                 <div>Cannot Delete Trip! Trip Occurs in the Next 24h</div>
             <% } %>
-            <form method="GET" action="/trip/<%=trip._id %>/passengers"><button>View Passengers</button></form>
+            <form method="GET" action="/trip/<%=trip._id %>/passengers"><button class="btn btn-default btn-block">View Passengers</button></form>
         <% } else { %>
         <button onclick="myFunction()">View Passengers</button>
 
@@ -54,9 +464,46 @@
     <% } %>
     
     <% } %>
+    </div>
+    </div>
+    </div>
 <!--TODO: place a PUT request form here to update the Trip details if a user is interested-->
 <!--
 <form action="/trip/id:?_method=PUT" method="POST">
     <button>Show Interest</button>
 </form>
 -->
+  <footer>
+        <div class="container footer" style="padding-top: 40px;">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <h4><strong>Hitchhikers</strong>
+                    </h4>
+                    <p>3630 University St
+
+                        <br>Montreal, QC H3A 2B2</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
+                        <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:name@example.com">frontdesk@hitchhikers.com</a>
+                        </li>
+                    </ul>
+                    <br>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="#" ><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-youtube-play fa-fw fa-3x"></i></a>
+                        </li>
+                    </ul>
+                    <p class="text-muted">Copyright &copy; Hitchhikers 2017</p>
+                </div>
+            </div>
+        </div>
+        <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
+    </footer>
+    </body>
+    </html>

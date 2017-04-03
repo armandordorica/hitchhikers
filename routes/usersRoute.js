@@ -25,10 +25,10 @@ router.get("/user/:id", function(req, res) {
         if(err) {
             console.log("Could not find user");
         }else{
-            console.log(user._id);
+            //console.log(user._id);
             // find vehicle(s)
             var vehicleArray = new Array();
-            console.log("user is a driver: " + user.accountType);
+            //console.log("user is a driver: " + user.accountType);
             if(user.accountType == true){
                 Vehicle.find({driver: userID}).exec(function(err, vehicles){
                     if(err){
@@ -37,7 +37,7 @@ router.get("/user/:id", function(req, res) {
                         vehicles.forEach(function(vehicle){
                             vehicleArray.push(vehicle);
                             res.render("driverProfile.ejs", {user: user, vehicles: vehicleArray});
-                            console.log("inside for loop, vehicleArray is " + vehicleArray);
+                            //console.log("inside for loop, vehicleArray is " + vehicleArray);
                         })
                     }
                 });
@@ -74,7 +74,7 @@ router.put("/profile/edit", isLoggedIn, function(req, res) {
             console.log(err);
             res.render("editProfile.ejs");
         } else {
-            console.log(req.body.name);
+            //console.log(req.body.name);
             res.redirect("/profile");
         }
     });
@@ -88,7 +88,7 @@ router.get("/profile", isLoggedIn, function(req,res){
     var driverTrips = [];
     var counter = 0;
     var userID = req.user._id;
-    console.log("user is " + userID);
+    //console.log("user is " + userID);
     
     // find vehicle
     var vehicleArray = new Array();
@@ -101,7 +101,7 @@ router.get("/profile", isLoggedIn, function(req,res){
             })
         }
     });
-    console.log("after Vehincle.find vehicleArray is " + vehicleArray);
+    //console.log("after Vehincle.find vehicleArray is " + vehicleArray);
     
     
     // find trips where user is the driver
@@ -203,7 +203,7 @@ router.put("/profile", function(req, res){
                     }  
                 }   
             });
-            console.log("Vehicle Added");
+            //console.log("Vehicle Added");
         }
             
     });
@@ -219,8 +219,8 @@ router.put("/profile", function(req, res){
             res.render("profile.ejs");
         }
         else{
-            console.log('Account Updated');
-            console.log(req.accountType);
+            //console.log('Account Updated');
+            //console.log(req.accountType);
             res.redirect("/profile");
         }
     });
@@ -228,7 +228,7 @@ router.put("/profile", function(req, res){
 
 
 router.post("/profile/rate/:id", function(req, res) {
-    console.log(req.params.id);
+    //console.log(req.params.id);
        res.redirect("/profile");
       
       var newRating = 0;
@@ -278,9 +278,9 @@ router.post("/profile/rate/:id", function(req, res) {
         if(err){
             console.log(err);
         } else {
-            console.log(newRating);
-            console.log(updatedUserRating.rating);
-            console.log(req.body.rating);
+            //console.log(newRating);
+            //console.log(updatedUserRating.rating);
+            //console.log(req.body.rating);
             //res.redirect("/profile");
         }
     });

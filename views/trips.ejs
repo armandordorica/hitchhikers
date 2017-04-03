@@ -24,6 +24,10 @@
     </div>
     
     <div class="col-md-12">
+    <input class="form-control"  type="text" name="date" placeholder="Date: YYYY,MM,DD">
+    </div>
+    
+    <div class="col-md-12">
     <input class="form-control" type="number" name="priceMin" placeholder="Minimum Price">
     </div>
     </div>
@@ -69,8 +73,7 @@
         <% trips.forEach(function(trip){ %>
         
             <% if((trip.driver !== undefined) && (trip.driver !== null)){ var driverRating = trip.driver.rating; }else{ var driverRating = "";}; %>
-            
-           
+
                
                <div class="col-md-6 panel panel-default">
                 <table class="table table-user-information">

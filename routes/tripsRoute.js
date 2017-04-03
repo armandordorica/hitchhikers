@@ -48,10 +48,14 @@ router.get("/trips", function(req, res) {
    
     var origin = req.param('origin');
     var destination = req.param('destination');
+    var dateEntered = req.param("date");
+    var date = new Date(dateEntered);
     var priceMin = req.param('priceMin');
     var priceMax = req.param('priceMax');
     var seats = req.param('seats');
     var sortBy = req.param('sortBy');
+    console.log("date specified is " + date);
+    
     if((req.param('order') !== undefined) && (req.param('order') !== null) && (req.param('order') !== "")){
         var order = req.param('order').toLowerCase();
     }
@@ -77,6 +81,9 @@ router.get("/trips", function(req, res) {
     }
     if(destination !== undefined && destination !== ""){
         query['destination'] = destination;
+    }
+    if((dateEntered !== undefined) && (dateEntered !== "") && (dateEntered !== null)){
+        query['date'] = date;
     }
     if((priceMin !== undefined) && (priceMin !== "") && (priceMax !== undefined) && (priceMax !== "")){ 
         query['price'] = {$gte: priceMin, $lte: priceMax};
@@ -147,12 +154,13 @@ router.post("/trips", function(req, res){
     
         var destination = req.body.destination;
         var origin = req.body.origin;
+        var date = req.body.date;
         var priceMin = req.body.priceMin;
         var priceMax = req.body.priceMax;
         var seats = req.body.seats;
         var sortBy = req.body.sortBy;
         var order = req.body.order;
-        res.redirect("/trips"+"?origin="+origin+"&destination="+destination+"&priceMin="+priceMin+"&priceMax="+priceMax+"&sortBy="+sortBy+"&order="+order+"&seats="+seats);
+        res.redirect("/trips"+"?origin="+origin+"&destination="+destination+"&priceMin="+priceMin+"&priceMax="+priceMax+"&sortBy="+sortBy+"&order="+order+"&seats="+seats+"&date="+date);
 
 });
 
@@ -234,7 +242,7 @@ router.get("/trip/:id/passengers", function(req, res) {
     // })
     
     var tripID = req.params.id;
-    console.log("req.params(id) is" + req.param("id"));
+    //console.log("req.param(id) is" + req.param("id"));
     Trip.findById(tripID).populate("passengers", "driver").exec(function(err,trip){
         console.log(trip);
         if(err){

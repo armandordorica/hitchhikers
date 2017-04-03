@@ -394,35 +394,41 @@ color: #004e64;
                 <p>Error: You Must be a Driver to Create Trip</p>
             </div>
         <% } else {%>
-            <div>
+             <div class="container post-trip" style="padding-top: 30px;">
+               <div class="row">
+            <div class="col-md-6">
+                <div class="well well-sm">
                 <form id="postTripForm" action="/trip/new" method="POST">
-                    <div>
+                    <div class="form-group">
                         <p>Origin</p>
-                        <input type="text" name="origin" placeholder="Origin" <% if((origin !== undefined) && (origin !== null) && (origin !== "")){ %> value= <%= origin %> <% } %> required>
+                        <input class="form-control" type="text" name="origin" placeholder="Origin" <% if((origin !== undefined) && (origin !== null) && (origin !== "")){ %> value= <%= origin %> <% } %> required>
                          
                     </div>
-                    <div>
+                    <div class="form-group">
                         <p>Destination</p>
-                        <input type="text" name="destination" placeholder="Destination" <% if((destination !== undefined) && (destination !== null) && (destination !== "")){ %> value= <%= destination %> <% } %> required>
+                        <input class="form-control" type="text" name="destination" placeholder="Destination" <% if((destination !== undefined) && (destination !== null) && (destination !== "")){ %> value= <%= destination %> <% } %> required>
                     </div>
-                    <div>
+                    <div class="form-group">
                         <p>Price</p>
-                        <input type="number" name="price" placeholder="Price" <% if((price !== undefined) && (price !== null) && (price !== "")){ %> value= <%= price %> <% } %> required>
+                        <input class="form-control" type="number" name="price" placeholder="Price" <% if((price !== undefined) && (price !== null) && (price !== "")){ %> value= <%= price %> <% } %> required>
                     </div>
-                    <div>
+                    <div class="form-group">
                         <p>Seats:</p>
-                        <input type="number" name="seats" placeholder="Available Seats" required>
+                        <input class="form-control" type="number" name="seats" placeholder="Available Seats" required>
                     </div>
-                    <div>
+                    <div class="form-group">
                         <p>Date:</p>
-                        <input type="date" name="date" placeholder="Date" required>
+                        <input class="form-control" type="date" name="date" placeholder="Date" required>
                     </div>
                     <div>
-                        <button>Submit</button>
+                        <button class="btn btn-default btn-block">Submit</button>
                     </div>
                 </form>
             </div>
         <% } %>
+        </div>
+        </div>
+        </div>
         </div>
     </body>
 </html>

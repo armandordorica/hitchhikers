@@ -6,7 +6,7 @@ var mongoose = require("mongoose");
 var passport = require("passport");
 var LocalStrategy = require("passport-local");
 var config = require('./models/oauth');
-var FacebookStrategy = require('passport-facebook').Strategy; 
+
 var passportLocalMongoose = require("passport-local-mongoose");
 var User = require("./models/user");
 var Trip = require("./models/trip");

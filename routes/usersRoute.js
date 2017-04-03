@@ -269,7 +269,7 @@ router.post("/profile/rate/:id", function(req, res) {
     });
     
     var function2 = function() {
-   User.findByIdAndUpdate(trip.driver, {
+     User.findByIdAndUpdate(trip.driver, {
         $set: {
             rating: Number(newRating)
         },

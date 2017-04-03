@@ -4,7 +4,7 @@ var User = require("../models/user");
 var Trip = require("../models/trip");
 var mongoose = require("mongoose");
 var passport = require("passport");
-var FacebookStrategy = require("passport-facebook").Strategy;
+var FacebookStrategy = require("passport-facebook");
 
 
 var nodemailer = require('nodemailer');
@@ -21,12 +21,24 @@ router.get("/", function(req, res){
 
 //********For Facebook*********
 
+
+router.get('/register/facebook',
+  passport.authenticate('facebook'));
+
+router.get('/register/facebook/return', 
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  });
+
+
 passport.use(new FacebookStrategy({
-    clientID: 1442992375731712,
-    clientSecret: "cccb69ea0bc9f3e33481eacf1453ac41",
-    callbackURL: "http://localhost:3000/auth/facebook/callback"
+    clientID: '1442992375731712',
+    clientSecret: 'cccb69ea0bc9f3e33481eacf1453ac41',
+    callbackURL: 'http://localhost:8080/auth/facebook/callback'
   },
   function(accessToken, refreshToken, profile, cb) {
+      console.log("facebook returned" + accessToken);
     User.findOrCreate({ _id: profile.id, email: profile.emails[0].value, username: profile.name.givenName, password: profile.name.givenName }, function (err, user) {
       return cb(err, user);
     });
